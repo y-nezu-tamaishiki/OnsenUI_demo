@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+  <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+  <script>
+    $(function() {
+        var no = 1
+        // キャッシュを無効にする
+        $.ajaxSetup({
+            cache: false
+        });
+        // 記事をとってきて表示
+        var getArticle = function(){
+            $.get('http://qiita.com/api/v2/items?',
+                    { page:no, per_page:"20" }
+                ).done(function(data) {
+                    $.each(data, function(i, v){
+                        // aタグオブジェクトをつくってhrefにv.urlをセット
+                        // v.titleをテキスト形式で表示
+                        var a = $("<a>").attr("href", v.url).text(v.title);
+                        // liタグオブジェクトをつくって先程作ったaをappend
+                        // それを#js_append_areaに追加
+                        $("#js_append_area").append($("<li>").append(a));
+                    })
+                });
+        }
+        // 最初の20件を初期表示
+        getArticle();
+        // ボタンを押すごとに次の20件を表示
+        $("#next").click(function () {
+            ++no;
+            getArticle();
+        });
+    });
+    </script>
+</head>
+<body>
+    <ul id="js_append_area">
+    </ul>
+    <a id="next" href="#">次の20件を表示</a>
+</body>
+</html>
