@@ -1,0 +1,11 @@
+body {
+    display: block;
+    height: 100%;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: none;
+    -ms-scroll-snap-type: mandatory;
+  }
+ .button {
+     margin-left: 3%;
+ }

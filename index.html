@@ -3,6 +3,7 @@
 <head>
   <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
   <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+  <link rel="stylesheet" href="style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
   <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
   <script>
@@ -23,7 +24,7 @@
                         var a = $("<a>").attr("href", v.url).text(v.title);
                         // liタグオブジェクトをつくって先程作ったaをappend
                         // それを#js_append_areaに追加
-                        $("#js_append_area").append($("<li>").append(a));
+                        $("#js_append_area").append($("<div class='list-item__center'>").append(a));
                     })
                 });
         }
@@ -39,7 +40,13 @@
 </head>
 <body>
     <ul id="js_append_area">
-    </ul>
-    <a id="next" href="#">次の20件を表示</a>
+        <li class="list-header">
+          投稿リスト
+        </li>
+        <li class="list-item">
+        </li>
+      </ul>
+    
+    <button class="button" id = next>次の20件を表示</button>
 </body>
 </html>
